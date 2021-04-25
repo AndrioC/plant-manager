@@ -1,5 +1,7 @@
+import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
-import { Alert, Platform } from 'react-native'
+import { Alert, Keyboard, Platform } from 'react-native'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import Button from '../../components/Button'
 
 import {
@@ -15,6 +17,7 @@ import {
 
 
 const UserIdentification:React.FC = () => {
+    const navigation = useNavigation()
     const [isFocused, setIsFocused] = useState(false)
     const [isFilled, setIsFilled] = useState(false)
     const [name, setName] = useState<string>()
@@ -33,35 +36,44 @@ const UserIdentification:React.FC = () => {
         setName(value)
     }
 
+    function handleSubmition(){
+        navigation.navigate("ConfirmationScreen")
+    }
+
     return (
         <Container>
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             >
-                <ViewContainer>
-                    <ViewForm>
-                        <Text>
-                            {isFilled ? '😊' : '😄' }
-                        </Text>
-                        <TextTitle>
-                            Como podemos {'\n'}
-                            chamar você?
-                        </TextTitle>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <ViewContainer>
+                        <ViewForm>
+                            <Text>
+                                {isFilled ? '😊' : '😄' }
+                            </Text>
+                            <TextTitle>
+                                Como podemos {'\n'}
+                                chamar você?
+                            </TextTitle>
 
-                        <TextInput 
-                            placeholder="Digite um nome" 
-                            placeholderTextColor="#b9b8b8"
-                            onBlur={handleInputBlur}
-                            onFocus={handleInputFocus}
-                            isFocused={isFocused}
-                            isFilled={isFilled}
-                            onChangeText={handleInputChange}
-                        />
-                        <FooterView>
-                            <Button title="Confirmar"/>
-                        </FooterView>
-                    </ViewForm>
-                </ViewContainer>
+                            <TextInput 
+                                placeholder="Digite um nome" 
+                                placeholderTextColor="#b9b8b8"
+                                onBlur={handleInputBlur}
+                                onFocus={handleInputFocus}
+                                isFocused={isFocused}
+                                isFilled={isFilled}
+                                onChangeText={handleInputChange}
+                            />
+                            <FooterView>
+                                <Button 
+                                    title="Começar"
+                                    onPress={handleSubmition}
+                                />
+                            </FooterView>
+                        </ViewForm>
+                    </ViewContainer>
+                </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
         </Container>
     )

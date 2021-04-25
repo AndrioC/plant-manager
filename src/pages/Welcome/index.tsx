@@ -12,8 +12,16 @@ import {
 import Feather from 'react-native-vector-icons/Feather'
 
 import wateringImg from '../../assets/watering.png'
+import { useNavigation } from '@react-navigation/core'
 
 const Welcome:React.FC = () => {
+
+    const navigation = useNavigation()
+
+    function handleStart(){
+        navigation.navigate("UserIdentification")
+    }
+
     return (
         <Container>
             <ViewContainer>
@@ -33,7 +41,10 @@ const Welcome:React.FC = () => {
                     Nós cuidamos de lembrar você sempre que precisar.
                 </TextSubtitle>
 
-                <TouchableButton activeOpacity={0.8}>
+                <TouchableButton 
+                    activeOpacity={0.8}
+                    onPress={handleStart}
+                >
                     <Feather name="chevron-right" size={18} color="#fff" style={{fontSize: 33}}/>
                 </TouchableButton>
             </ViewContainer>

@@ -1,12 +1,10 @@
+import 'react-native-gesture-handler'
 import React from 'react'
-import UserIdentification from './src/pages/UserIdentification'
-import Welcome from './src/pages/Welcome'
+import Routes from './src/routes'
 
 const App:React.FC = () => {
   return (
-    <>
-      <UserIdentification />
-    </>
+    <Routes />
   )
 }
 
