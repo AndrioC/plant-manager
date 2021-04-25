@@ -4,13 +4,18 @@ import { Dimensions } from 'react-native'
 
 export const Container = styled.SafeAreaView`
     flex: 1;
+`;
+
+export const ViewContainer = styled.View`
+    flex: 1;
     align-items: center;
     justify-content: space-around;
     background: white;
+    padding: 0 60px;
 `;
 
 export const TextTitle = styled.Text`
-    font-size: 32px;
+    font-size: 27px;
     font-weight: bold;
     text-align: center;
     color: ${colors.heading};
@@ -28,7 +33,7 @@ export const TextSubtitle = styled.Text`
     font-size: 18px;
     padding: 20px 0;
     color: ${colors.heading};
-
+    line-height: 24px;
     font-family: sans-serif;
 `;
 
