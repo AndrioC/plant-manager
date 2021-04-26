@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import Button from '../../components/Button'
 
@@ -12,6 +13,11 @@ import {
 
 
 const ConfirmationScreen:React.FC = () => {
+    const navigation = useNavigation()
+
+    function handleMoveOn(){
+        navigation.navigate("PlantSelect")
+    }
 
     return (
         <Container>
@@ -30,7 +36,7 @@ const ConfirmationScreen:React.FC = () => {
                 </TextSubTitle>
 
             <FooterView>
-                <Button title="Confirmar"/>
+                <Button title="Confirmar" onPress={handleMoveOn}/>
             </FooterView>
             </ViewContainer>
         </Container>

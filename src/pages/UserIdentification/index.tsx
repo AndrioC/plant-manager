@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/core'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useState } from 'react'
 import { Alert, Keyboard, Platform } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
@@ -36,7 +37,12 @@ const UserIdentification:React.FC = () => {
         setName(value)
     }
 
-    function handleSubmition(){
+    async function handleSubmition(){
+        if(!name)
+            return Alert.alert("Me diz como chamar você..")
+        
+        await AsyncStorage.setItem('@plantmanager:user', name)
+
         navigation.navigate("ConfirmationScreen")
     }
 
