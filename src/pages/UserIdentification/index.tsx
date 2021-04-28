@@ -41,9 +41,12 @@ const UserIdentification:React.FC = () => {
         if(!name)
             return Alert.alert("Me diz como chamar você..")
         
-        await AsyncStorage.setItem('@plantmanager:user', name)
-
-        navigation.navigate("ConfirmationScreen")
+        try {
+            await AsyncStorage.setItem('@plantmanager:user', name)
+            navigation.navigate("ConfirmationScreen")
+        } catch {
+            Alert.alert("Não foi possível salvar o seu nome!")
+        }
     }
 
     return (

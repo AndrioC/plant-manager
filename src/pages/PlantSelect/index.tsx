@@ -15,23 +15,11 @@ import {
     TextSubtitle,
 } from './styles'
 import colors from '../../../styles/colors'
+import { PlantProps } from '../../libs/storage'
 
 interface EnviromentProps{
     key: string;
     title: string;
-}
-
-interface PlantProps{
-    id: number;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: [string];
-    frequency: {
-        times: number;
-        repeat_every: string;
-    }
 }
 
 const PlantSelect:React.FC = () => {

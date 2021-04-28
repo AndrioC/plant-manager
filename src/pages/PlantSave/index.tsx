@@ -17,26 +17,15 @@ import { SvgFromUri } from 'react-native-svg'
 import { useRoute } from '@react-navigation/core'
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
 import { isBefore, format } from 'date-fns'
-
-
-import waterDrop from '../../assets/waterdrop.png'
-import Button from '../../components/Button'
 import { Alert, Platform } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
+import waterDrop from '../../assets/waterdrop.png'
+import Button from '../../components/Button'
+import { loadPlant, PlantProps, savePlant } from '../../libs/storage'
+
 interface Params{    
-    plant: {
-        id: number;
-        name: string;
-        about: string;
-        water_tips: string;
-        photo: string;
-        environments: [string];
-        frequency: {
-            times: number;
-            repeat_every: string;
-        }
-    }
+    plant: PlantProps;
 }
 
 const PlantSave:React.FC = () => {
@@ -64,6 +53,19 @@ const PlantSave:React.FC = () => {
 
     function handleOpenDateTimePickerForAndroid(){
         setShowDataPicker(oldState => !oldState)    
+    }
+
+    async function handleSave(){
+        
+       try {
+            await savePlant({
+                ...plant,
+                dateTimeNotification: selectedDateTime,
+            })
+        } catch {
+            Alert.alert("Não foi possível salvar!")
+        }
+        
     }
 
     return (
@@ -116,7 +118,7 @@ const PlantSave:React.FC = () => {
 
                 <Button 
                     title="Cadastrar planta" 
-                    onPress={() => {}}
+                    onPress={handleSave}
                 />
 
             </ViewController>
