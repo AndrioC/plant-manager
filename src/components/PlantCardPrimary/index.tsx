@@ -5,7 +5,6 @@ import { SvgFromUri } from 'react-native-svg'
 import {
     RectButtonStyled,
     Text,
-    Image,
 } from './styles'
 
 interface PlantCardPrimaryProps extends RectButtonProps{
