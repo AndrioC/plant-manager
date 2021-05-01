@@ -23,5 +23,4 @@ export const Image = styled.Image`
     width: 70px;
     height: 70px;
     border-radius: 40px; 
-    //{1:49h}
 `;
